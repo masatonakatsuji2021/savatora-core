@@ -1,6 +1,30 @@
 {
     "name": "savatora-core",
     "version": "0.0.1",
-    "description": "",
-    "author": "masato nakatsuji"
+    "description": "Main module for server applications for node.js.",
+    "author": "masato nakatsuji",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "savatora-plugin-web": "^0.0.1",
+        "savatora-plugin-statuscode": "^0.0.1"
+    },
+    "devDependencies": {
+        "savatora-plugin-web": "^0.0.1",
+        "savatora-plugin-statuscode": "^0.0.1"
+    },
+    "keywords": [
+        "node",
+        "npm",
+        "server",
+        "savatora"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/masatonakatsuji2021/savatora-core.git"
+    },
+    "bugs": {
+        "url": "https://github.com/masatonakatsuji2021/savatora-core/issues"
+    },
+    "homepage": ""
 }
