@@ -57,7 +57,6 @@ export class IntermediateProcess {
             }
         });
 
-        
         process.on("SIGINT", async ()=>{
             this.onClose();
         });
@@ -92,7 +91,7 @@ export class IntermediateProcess {
                     this.onListenResponse(data2);
                 }
                 else if (data2.mode == ThreadMessageMode.Event) {
-                    this.onListenOnEvent(data2, worker);
+                    this.onListenOnEvent(data2);
                 }
             });
         }
@@ -107,7 +106,7 @@ export class IntermediateProcess {
         process.send(JSON.stringify(data));
     }
 
-    private onListenOnEvent(data: ThreadMessageDataOnEvent, worker: Worker) {
+    private onListenOnEvent(data: ThreadMessageDataOnEvent) {
         data.process = this.processNo;
         process.send(JSON.stringify(data));
     }

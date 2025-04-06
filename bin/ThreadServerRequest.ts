@@ -39,6 +39,8 @@ export class ThreadServerRequest {
 
     private _req : http.IncomingMessage;
 
+    public _timeoutTick : NodeJS.Timeout;
+
     public constructor(data : ThreadMessageDataOnListen, context: ThreadMessage) {
         this._threadNo = context.threadNo;
         this._id = data.id;
@@ -74,6 +76,13 @@ export class ThreadServerRequest {
         return this._req.socket;
     }
     
+    public setTimeout(msecs: number, callback?: () => void) {
+        this._timeoutTick = setTimeout(() => {
+            callback();
+        }, msecs);
+        return this;
+    }
+
     public on(event: "close", listener: () => void): this;
     public on(event: "data", listener: (chunk: any) => void): this;
     public on(event: "end", listener: () => void): this;

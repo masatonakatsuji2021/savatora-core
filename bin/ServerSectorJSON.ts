@@ -24,17 +24,24 @@
 
 export interface ServerSectorJSON {
 
+    /** Sector Name */
     name: string,
 
+    /** Secotr Index */
     index: number,
 
+    /** Listen Port */
     port : Array<number>,
 
+    /** Listen Host */
     host : Array<string>,
 
+    /** Target Host */
     targetHost: Array<string>,
 
+    /** Plugin List */
     plugins: Array<string>,
 
+    /** Server Name */
     serverName: string,
 }

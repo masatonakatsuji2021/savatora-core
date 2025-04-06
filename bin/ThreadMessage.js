@@ -101,6 +101,7 @@ class ThreadMessage {
                 try {
                     // @ts-ignore
                     const req = new ThreadServerRequest_1.ThreadServerRequest(data, this);
+                    res._req = req;
                     yield plugin.onListen(req, res, decisionSector, this.threadNo);
                 }
                 catch (error) {
@@ -109,8 +110,7 @@ class ThreadMessage {
                 if (res.writableFinished)
                     return;
             }
-            if (!res.writableFinished)
-                res.end();
+            // if (!res.writableFinished) res.end();
         });
     }
     onClose() {
@@ -136,3 +136,4 @@ class ThreadMessage {
 }
 exports.ThreadMessage = ThreadMessage;
 ThreadMessage.onEventBuffer = {};
+ThreadMessage.timeoutCallbackBuffer = {};

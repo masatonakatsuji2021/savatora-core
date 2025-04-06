@@ -57,6 +57,8 @@ class ThreadServerResponse {
     }
     end() {
         this._writableFinished = true;
+        if (this._req._timeoutTick)
+            clearTimeout(this._req._timeoutTick);
         worker_threads_1.parentPort.postMessage(JSON.stringify({
             mode: ThreadMessageMode_1.ThreadMessageMode.Listen,
             id: this._id,

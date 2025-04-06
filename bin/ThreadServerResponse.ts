@@ -23,9 +23,12 @@
  */
 
 import { parentPort } from "worker_threads";
+import { ThreadServerRequest } from "./ThreadServerRequest";
 import { ThreadMessageMode } from "./ThreadMessageMode";
 
 export class ThreadServerResponse {
+
+    public _req : ThreadServerRequest;
 
     private _id : number;
 
@@ -71,6 +74,8 @@ export class ThreadServerResponse {
 
     public end() {
         this._writableFinished = true;
+
+        if (this._req._timeoutTick) clearTimeout(this._req._timeoutTick); 
 
         parentPort.postMessage(JSON.stringify({
             mode: ThreadMessageMode.Listen,

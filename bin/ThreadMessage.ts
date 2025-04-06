@@ -44,6 +44,8 @@ export class ThreadMessage {
 
     public static onEventBuffer = {};
 
+    public static timeoutCallbackBuffer = {};
+
     public constructor() {
 
         this.threadNo = parseInt(process.argv[2]);
@@ -116,6 +118,7 @@ export class ThreadMessage {
             try {
                 // @ts-ignore
                 const req : ThreadServerRequest = new ThreadServerRequest(data, this);
+                res._req = req;
                 await plugin.onListen(req, res, decisionSector, this.threadNo);
             } catch (error) {
                 console.error(error);
@@ -124,7 +127,7 @@ export class ThreadMessage {
             if (res.writableFinished) return;
         }
 
-        if (!res.writableFinished) res.end();
+        // if (!res.writableFinished) res.end();
     }
 
     private async onClose() {

@@ -55,6 +55,12 @@ class ThreadServerRequest {
     get socket() {
         return this._req.socket;
     }
+    setTimeout(msecs, callback) {
+        this._timeoutTick = setTimeout(() => {
+            callback();
+        }, msecs);
+        return this;
+    }
     on(event, callback) {
         const eventId = Math.round(Math.random() * 10000000);
         worker_threads_1.parentPort.postMessage(JSON.stringify({
